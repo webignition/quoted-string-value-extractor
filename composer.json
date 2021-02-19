@@ -22,8 +22,15 @@
         }
     },
     "scripts": {
-        "cs": "./vendor/bin/phpcs",
         "cs-ecs": "./vendor/bin/ecs check src tests --ansi --no-progress-bar --config ecs.php",
+        "cs-phpcs": "./vendor/bin/phpcs",
+        "cs": [
+            "@cs-ecs",
+            "@cs-phpcs"
+        ],
+        "cs-fix": [
+            "./vendor/bin/ecs check src tests --ansi --config ecs.php --fix"
+        ],
         "static-analysis": "./vendor/bin/phpstan analyse",
         "test": "./vendor/bin/phpunit --colors=always",
         "ci": [
@@ -33,7 +40,7 @@
         ]
     },
     "require": {
-        "php": ">=7.4",
+        "php": ">=7.4|^8",
         "ext-mbstring": "*"
     },
     "require-dev": {

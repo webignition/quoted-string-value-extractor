@@ -11,13 +11,16 @@ class QuotedStringValueExtractorTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider getValueDataProvider
      */
-    public function testGetValue(string $quotedString, string $expectedValue)
+    public function testGetValue(string $quotedString, string $expectedValue): void
     {
         $extractor = QuotedStringValueExtractor::createExtractor();
 
         $this->assertSame($extractor->getValue($quotedString), $expectedValue);
     }
 
+    /**
+     * @return array[]
+     */
     public function getValueDataProvider(): array
     {
         return [

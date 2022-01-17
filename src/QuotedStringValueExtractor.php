@@ -13,18 +13,13 @@ class QuotedStringValueExtractor
 
     public function getValue(string $quotedString): string
     {
-        $quotedString = trim($quotedString);
-        if ('' === $quotedString) {
-            return '';
-        }
+        $value = trim($quotedString);
 
-        $value = $quotedString;
-
-        if ('"' === $value[0]) {
+        if (str_starts_with($value, '"')) {
             $value = mb_substr($value, 1);
         }
 
-        if ('"' === $value[-1]) {
+        if (str_ends_with($value, '"')) {
             $value = mb_substr($value, 0, -1);
         }
 
